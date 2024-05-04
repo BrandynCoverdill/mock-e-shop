@@ -51,7 +51,9 @@ export default function Layout({children}) {
 						sx={{
 							textWrap: 'noWrap',
 							flexGrow: 1,
+							fontWeight: 'bold',
 						}}
+						variant='h6'
 					>
 						Mock eShop
 					</Typography>
