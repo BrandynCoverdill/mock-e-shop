@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './pages/Home';
 import InvalidPage from './pages/InvalidPage';
 import './styles/index.css';
-import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import {CssBaseline, ThemeProvider, createTheme} from '@mui/material';
 import Layout from './components/Layout';
-import { blue, green } from '@mui/material/colors';
+import {blue, green} from '@mui/material/colors';
 
 // Create custom theme
 const theme = createTheme({
@@ -15,7 +15,7 @@ const theme = createTheme({
 			main: blue[400],
 		},
 		secondary: {
-			main: green[400],
+			main: green[300],
 		},
 	},
 });

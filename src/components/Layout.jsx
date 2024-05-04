@@ -1,6 +1,7 @@
 // Component used for showing Appbars, footers, sidebars, etc on every page
 import {
 	AppBar,
+	Badge,
 	Box,
 	Button,
 	ButtonGroup,
@@ -9,11 +10,12 @@ import {
 	Toolbar,
 	Typography,
 } from '@mui/material';
-import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import {useState} from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
+import {ShoppingCartOutlined as ShoppingCartIcon} from '@mui/icons-material';
 
-export default function Layout({ children }) {
+export default function Layout({children}) {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 	const navigate = useNavigate();
@@ -61,31 +63,58 @@ export default function Layout({ children }) {
 							},
 						}}
 					>
-						{menuItems.map((item) => (
-							<Button
-								key={item.text}
-								onClick={() => navigate(item.path)}
-								variant='text'
-								sx={
-									location.pathname === item.path
-										? {
-												bgcolor: '#2196f3',
-										  }
-										: null
-								}
-							>
-								<Typography
-									color='textPrimary'
-									sx={{
-										'&:hover': {
-											color: 'white',
-										},
-									}}
+						{menuItems.map((item) =>
+							item.text === 'Your Cart' ? (
+								<Button
+									key={item.text}
+									onClick={() => navigate(item.path)}
+									variant='text'
+									sx={
+										location.pathname === item.path
+											? {
+													bgcolor: '#2196f3',
+											  }
+											: null
+									}
 								>
-									{item.text}
-								</Typography>
-							</Button>
-						))}
+									<Badge badgeContent={0} color='secondary'>
+										<ShoppingCartIcon
+											sx={{
+												color: 'black',
+												'&:hover': {
+													color: 'white',
+												},
+											}}
+											fontSize='small'
+										/>
+									</Badge>
+								</Button>
+							) : (
+								<Button
+									key={item.text}
+									onClick={() => navigate(item.path)}
+									variant='text'
+									sx={
+										location.pathname === item.path
+											? {
+													bgcolor: '#2196f3',
+											  }
+											: null
+									}
+								>
+									<Typography
+										color='textPrimary'
+										sx={{
+											'&:hover': {
+												color: 'white',
+											},
+										}}
+									>
+										{item.text}
+									</Typography>
+								</Button>
+							)
+						)}
 					</ButtonGroup>
 					<Button
 						onClick={handleOpenMenu}
@@ -96,7 +125,7 @@ export default function Layout({ children }) {
 						}}
 					>
 						<Typography color='textSecondary'>
-							<MenuIcon fontSize='large' />
+							<MenuIcon />
 						</Typography>
 					</Button>
 					<Menu open={open} anchorEl={anchorEl} onClick={handleCloseMenu}>
