@@ -42,7 +42,7 @@ export default function Layout({ children }) {
 
 	return (
 		<Box>
-			<AppBar>
+			<AppBar elevation={1}>
 				<Toolbar>
 					<Typography
 						sx={{
