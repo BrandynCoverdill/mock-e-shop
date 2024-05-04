@@ -1,10 +1,12 @@
-# React Template
+# Mock eShop
 
-This template provides a fast way to start creating new apps with React.
+A mock e-shop project that allows users to view products, add to their cart, view their cart, and proceed to buy those products.
+
+This project is a lesson from The Odin Project, listed [here](https://www.theodinproject.com/lessons/node-path-react-new-shopping-cart).
 
 ## Installed Packages
 
-This template has the following packages installed:
+This app has the following packages installed:
 
 - @emotion/react
 - @emotion/styled
@@ -13,9 +15,9 @@ This template has the following packages installed:
 - @mui/material
 - react-router-dom
 
-## Use / Run template
+## Use / Run application
 
-To use/run this template, run the following commands:
+To use/run this app, run the following commands:
 
 ```
 npm i
