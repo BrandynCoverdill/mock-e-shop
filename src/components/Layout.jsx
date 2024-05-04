@@ -64,20 +64,16 @@ export default function Layout({ children }) {
 							<Button
 								key={item.text}
 								onClick={() => navigate(item.path)}
-								// TODO: change color of button text to theme
-								color='warning'
 								variant='text'
 								sx={{
 									textWrap: 'noWrap',
 								}}
 							>
-								<Typography>{item.text}</Typography>
+								<Typography color='textPrimary'>{item.text}</Typography>
 							</Button>
 						))}
 					</ButtonGroup>
-					{/* TODO: change color of menu icon to theme */}
 					<Button
-						color='warning'
 						onClick={handleOpenMenu}
 						sx={{
 							display: {
@@ -85,7 +81,9 @@ export default function Layout({ children }) {
 							},
 						}}
 					>
-						<MenuIcon fontSize='large' />
+						<Typography color='textSecondary'>
+							<MenuIcon fontSize='large' />
+						</Typography>
 					</Button>
 					<Menu open={open} anchorEl={anchorEl} onClick={handleCloseMenu}>
 						{menuItems.map((item) => (

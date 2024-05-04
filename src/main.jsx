@@ -6,24 +6,33 @@ import InvalidPage from './pages/InvalidPage';
 import './styles/index.css';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import Layout from './components/Layout';
+import { blue, green } from '@mui/material/colors';
 
 // Create custom theme
-// TODO: create a theming for this app
-const theme = createTheme({});
+const theme = createTheme({
+	palette: {
+		primary: {
+			main: green[400],
+		},
+		secondary: {
+			main: blue[400],
+		},
+	},
+});
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
-		{/* <ThemeProvider theme={theme}> */}
-		<CssBaseline>
-			<Router>
-				<Layout>
-					<Routes>
-						<Route path='/' element={<Home />} />
-						<Route path='*' element={<InvalidPage />} />
-					</Routes>
-				</Layout>
-			</Router>
-		</CssBaseline>
-		{/* </ThemeProvider> */}
+		<ThemeProvider theme={theme}>
+			<CssBaseline>
+				<Router>
+					<Layout>
+						<Routes>
+							<Route path='/' element={<Home />} />
+							<Route path='*' element={<InvalidPage />} />
+						</Routes>
+					</Layout>
+				</Router>
+			</CssBaseline>
+		</ThemeProvider>
 	</React.StrictMode>
 );
