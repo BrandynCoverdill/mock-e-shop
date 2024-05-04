@@ -10,13 +10,14 @@ import {
 	Typography,
 } from '@mui/material';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 
 export default function Layout({ children }) {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 	const navigate = useNavigate();
+	const location = useLocation();
 	const menuItems = [
 		{
 			text: 'Home',
@@ -65,11 +66,24 @@ export default function Layout({ children }) {
 								key={item.text}
 								onClick={() => navigate(item.path)}
 								variant='text'
-								sx={{
-									textWrap: 'noWrap',
-								}}
+								sx={
+									location.pathname === item.path
+										? {
+												bgcolor: '#2196f3',
+										  }
+										: null
+								}
 							>
-								<Typography color='textPrimary'>{item.text}</Typography>
+								<Typography
+									color='textPrimary'
+									sx={{
+										'&:hover': {
+											color: 'white',
+										},
+									}}
+								>
+									{item.text}
+								</Typography>
 							</Button>
 						))}
 					</ButtonGroup>
@@ -87,7 +101,17 @@ export default function Layout({ children }) {
 					</Button>
 					<Menu open={open} anchorEl={anchorEl} onClick={handleCloseMenu}>
 						{menuItems.map((item) => (
-							<MenuItem key={item.text} onClick={() => navigate(item.path)}>
+							<MenuItem
+								key={item.text}
+								onClick={() => navigate(item.path)}
+								sx={
+									location.pathname === item.path
+										? {
+												bgcolor: '#2196f3',
+										  }
+										: null
+								}
+							>
 								<Typography variant='body1'>{item.text}</Typography>
 							</MenuItem>
 						))}
