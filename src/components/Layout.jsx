@@ -10,12 +10,12 @@ import {
 	Toolbar,
 	Typography,
 } from '@mui/material';
-import {useState} from 'react';
-import {useLocation, useNavigate} from 'react-router-dom';
+import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
-import {ShoppingCartOutlined as ShoppingCartIcon} from '@mui/icons-material';
+import { ShoppingCartOutlined as ShoppingCartIcon } from '@mui/icons-material';
 
-export default function Layout({children}) {
+export default function Layout({ children }) {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 	const navigate = useNavigate();
