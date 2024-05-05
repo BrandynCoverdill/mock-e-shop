@@ -5,12 +5,7 @@ import Masonry from '@mui/lab/Masonry';
 
 export default function Store() {
 	const [products, setProducts] = useState([]);
-	const [cart, setCart] = useState([
-		{
-			id: 1,
-			qty: 1,
-		},
-	]);
+	const [cart, setCart] = useState([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
