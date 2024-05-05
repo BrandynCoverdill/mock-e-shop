@@ -4,13 +4,21 @@ import {
 	Box,
 	Card,
 	CardContent,
-	CardHeader,
 	CardMedia,
 	CardActions,
 	IconButton,
 } from '@mui/material';
 
-export default function ProductCard({ product }) {
+// @ts-ignore
+export default function ProductCard({ product, handleAddProductToCart }) {
+	// @ts-ignore
+	function handleAddNewProduct(productId) {
+		handleAddProductToCart(productId);
+		// If its the first time a user added a certain product to cart, modify the card
+
+		// Modify card to show the number of product is in the cart
+	}
+
 	return (
 		<Box>
 			<Card
@@ -55,6 +63,7 @@ export default function ProductCard({ product }) {
 									border: '1px solid black',
 								}}
 								disableTouchRipple
+								onClick={() => handleAddNewProduct(product.id)}
 							>
 								<Add />
 							</IconButton>
