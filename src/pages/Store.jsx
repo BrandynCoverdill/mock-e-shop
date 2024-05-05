@@ -14,7 +14,7 @@ export default function Store() {
 			setProducts(json);
 		};
 		fetchData();
-	}, []);
+	}, [cart]);
 
 	// Adds a product to the cart
 	const handleAddProductToCart = (productId) => {
@@ -42,6 +42,7 @@ export default function Store() {
 			});
 			setCart(nextCart);
 		}
+		console.log(cart);
 	};
 
 	return (
@@ -61,6 +62,7 @@ export default function Store() {
 					// @ts-ignore
 					<ProductCard
 						product={product}
+						cart={cart}
 						handleAddProductToCart={handleAddProductToCart}
 					/>
 				))}
