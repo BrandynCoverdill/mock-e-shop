@@ -6,8 +6,13 @@ import Home from './pages/Home';
 import InvalidPage from './pages/InvalidPage';
 import Cart from './pages/Cart';
 import Store from './pages/Store';
+import { useState, createContext } from 'react';
+
+export const Context = createContext();
 
 export default function App() {
+	const [cart, setCart] = useState([]);
+
 	// Create custom theme
 	const theme = createTheme({
 		palette: {
@@ -23,16 +28,18 @@ export default function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline>
-				<Router>
-					<Layout>
-						<Routes>
-							<Route path='/' element={<Home />} />
-							<Route path='store' element={<Store />} />
-							<Route path='cart' element={<Cart />} />
-							<Route path='*' element={<InvalidPage />} />
-						</Routes>
-					</Layout>
-				</Router>
+				<Context.Provider value={[cart, setCart]}>
+					<Router>
+						<Layout>
+							<Routes>
+								<Route path='/' element={<Home />} />
+								<Route path='store' element={<Store />} />
+								<Route path='cart' element={<Cart />} />
+								<Route path='*' element={<InvalidPage />} />
+							</Routes>
+						</Layout>
+					</Router>
+				</Context.Provider>
 			</CssBaseline>
 		</ThemeProvider>
 	);

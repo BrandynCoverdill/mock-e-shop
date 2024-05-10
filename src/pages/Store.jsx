@@ -1,11 +1,12 @@
 import { Card, Container, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import ProductCard from '../components/ProductCard';
 import Masonry from '@mui/lab/Masonry';
+import { Context } from '../App';
 
 export default function Store() {
 	const [products, setProducts] = useState([]);
-	const [cart, setCart] = useState([]);
+	const [cart, setCart] = useContext(Context);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -46,7 +47,6 @@ export default function Store() {
 			});
 			setCart(nextCart);
 		}
-		console.log(cart);
 	};
 
 	return (
