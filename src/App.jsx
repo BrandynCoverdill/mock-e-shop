@@ -8,6 +8,7 @@ import Cart from './pages/Cart';
 import Store from './pages/Store';
 import { useState, createContext } from 'react';
 
+// @ts-ignore
 export const Context = createContext();
 
 export default function App() {
