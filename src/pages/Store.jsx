@@ -9,9 +9,13 @@ export default function Store() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const res = await fetch('https://fakestoreapi.com/products');
-			const json = await res.json();
-			setProducts(json);
+			const res = await fetch('https://fakestoreapi.com/products', {
+				method: 'GET',
+				mode: 'cors',
+				headers: { 'Content-Type': 'application/json' },
+			})
+				.then((response) => response.json())
+				.then((json) => setProducts(json));
 		};
 		fetchData();
 	}, [cart]);
