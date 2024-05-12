@@ -38,7 +38,14 @@ export default function ProductCard({ product, cart, handleAddProductToCart }) {
 			<Card
 				sx={{
 					// maxWidth: '400px',
-					display: 'flex',
+					// display: 'flex',
+					display: {
+						sm: 'flex',
+					},
+					// maxWidth: {
+					// 	xs: '300px',
+					// 	sm: 'auto',
+					// },
 				}}
 				raised
 			>
@@ -86,7 +93,12 @@ export default function ProductCard({ product, cart, handleAddProductToCart }) {
 									<IconButton>
 										<Remove />
 									</IconButton>
-									<TextField value={inCart[0].qty}></TextField>
+									<TextField
+										value={inCart[0].qty}
+										sx={{
+											flexGrow: '2',
+										}}
+									></TextField>
 									<IconButton onClick={() => handleAddNewProduct(product.id)}>
 										<Add />
 									</IconButton>
