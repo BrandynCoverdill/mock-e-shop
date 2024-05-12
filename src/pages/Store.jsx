@@ -49,6 +49,29 @@ export default function Store() {
 		}
 	};
 
+	// Removes a product from the cart
+	const handleRemoveProductFromCart = (productId) => {
+		const productToUpdate = cart.filter((product) => product.id === productId);
+		// BUG: Bug where when removing a single qty from a product, it removes all of it.
+		console.log(productToUpdate);
+		// If the quantity for the product is more than 1
+		if (productToUpdate.qty > 1) {
+			const updatedCart = cart.map((product) => {
+				if (productId === product.id) {
+					return { ...product, qty: (product.qty -= 1) };
+				} else {
+					return { ...product };
+				}
+			});
+			setCart(updatedCart);
+		} else {
+			// If the cart has the product with only one as the quantity
+			const updatedCart = cart.filter((product) => product.id !== productId);
+			setCart(updatedCart);
+		}
+		console.log(cart);
+	};
+
 	return (
 		<Container>
 			<Masonry
@@ -68,6 +91,7 @@ export default function Store() {
 						product={product}
 						cart={cart}
 						handleAddProductToCart={handleAddProductToCart}
+						handleRemoveProductFromCart={handleRemoveProductFromCart}
 					/>
 				))}
 			</Masonry>

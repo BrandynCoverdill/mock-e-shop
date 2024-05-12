@@ -9,29 +9,15 @@ import {
 	IconButton,
 	TextField,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
 
 // @ts-ignore
-export default function ProductCard({ product, cart, handleAddProductToCart }) {
-	const [cartIds, setCartIds] = useState([]);
-
+export default function ProductCard({
+	product,
+	cart,
+	handleAddProductToCart,
+	handleRemoveProductFromCart,
+}) {
 	const inCart = cart.filter((item) => (item.id === product.id ? item : ''));
-
-	useEffect(() => {
-		setCartIds(cart.map((item) => item.id));
-	}, []);
-
-	// @ts-ignore
-	function handleAddNewProduct(productId) {
-		// Update Cart
-		handleAddProductToCart(productId);
-
-		// Update CartIds
-		// TODO: If its the first time a user added a certain product to cart, modify the card
-		if (!cartIds.includes(productId)) {
-			setCartIds([...cartIds, productId]);
-		}
-	}
 
 	return (
 		<Box>
@@ -90,7 +76,9 @@ export default function ProductCard({ product, cart, handleAddProductToCart }) {
 									<IconButton>
 										<Close />
 									</IconButton>
-									<IconButton>
+									<IconButton
+										onClick={() => handleRemoveProductFromCart(product.id)}
+									>
 										<Remove />
 									</IconButton>
 									<TextField
@@ -99,7 +87,9 @@ export default function ProductCard({ product, cart, handleAddProductToCart }) {
 											flexGrow: '2',
 										}}
 									></TextField>
-									<IconButton onClick={() => handleAddNewProduct(product.id)}>
+									<IconButton
+										onClick={() => handleAddProductToCart(product.id)}
+									>
 										<Add />
 									</IconButton>
 								</Box>
@@ -109,49 +99,11 @@ export default function ProductCard({ product, cart, handleAddProductToCart }) {
 										border: '1px solid black',
 									}}
 									disableTouchRipple
-									onClick={() => handleAddNewProduct(product.id)}
+									onClick={() => handleAddProductToCart(product.id)}
 								>
 									<Add />
 								</IconButton>
 							)}
-							{/* {cartIds.includes(product.id) ? (
-								cart.filter((item) =>
-									item.id === product.id ? (
-										<Box
-											sx={{
-												display: 'flex',
-												justifyContent: 'center',
-												alignItems: 'center',
-											}}
-										>
-											<IconButton>
-												<Close />
-											</IconButton>
-											<IconButton>
-												<Remove />
-											</IconButton>
-											<TextField>{item.qty}</TextField>
-											<IconButton
-												onClick={() => handleAddNewProduct(product.id)}
-											>
-												<Add />
-											</IconButton>
-										</Box>
-									) : (
-										''
-									)
-								)
-							) : (
-								<IconButton
-									sx={{
-										border: '1px solid black',
-									}}
-									disableTouchRipple
-									onClick={() => handleAddNewProduct(product.id)}
-								>
-									<Add />
-								</IconButton>
-							)} */}
 						</CardActions>
 						<Typography variant='body2'>{product.description}</Typography>
 					</CardContent>
