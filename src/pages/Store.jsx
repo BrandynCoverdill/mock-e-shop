@@ -51,6 +51,7 @@ export default function Store({
 						handleQtyChange={handleQtyChange}
 						handleRemoveProductFromCart={handleRemoveProductFromCart}
 						key={product.id}
+						showDescription={true}
 					/>
 				))}
 			</Masonry>

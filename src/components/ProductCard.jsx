@@ -18,6 +18,7 @@ export default function ProductCard({
 	handleRemoveProductQtyFromCart,
 	handleQtyChange,
 	handleRemoveProductFromCart,
+	showDescription,
 }) {
 	const inCart = cart.filter((item) => (item.id === product.id ? item : ''));
 
@@ -44,11 +45,14 @@ export default function ProductCard({
 						component='img'
 						image={product.image}
 						title={product.title}
-						sx={{
-							objectFit: 'contain',
-							maxHeight: '200px',
-							width: '100%',
-						}}
+						sx={[
+							{
+								objectFit: 'contain',
+								maxHeight: '200px',
+								width: '100%',
+							},
+							!showDescription ? { padding: 2 } : { padding: 0 },
+						]}
 					/>
 				</Box>
 				{/* Product Content */}
@@ -106,7 +110,9 @@ export default function ProductCard({
 								</IconButton>
 							)}
 						</CardActions>
-						<Typography variant='body2'>{product.description}</Typography>
+						{showDescription ? (
+							<Typography variant='body2'>{product.description}</Typography>
+						) : null}
 					</CardContent>
 				</Box>
 			</Card>
