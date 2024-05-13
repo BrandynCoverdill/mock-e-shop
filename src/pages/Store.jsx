@@ -50,7 +50,7 @@ export default function Store() {
 	};
 
 	// Removes a product from the cart
-	const handleRemoveProductFromCart = (productId) => {
+	const handleRemoveProductQtyFromCart = (productId) => {
 		const productToUpdate = cart.filter((product) => product.id === productId);
 		// If the quantity for the product is more than 1
 		if (productToUpdate[0].qty > 1) {
@@ -91,6 +91,11 @@ export default function Store() {
 		setCart(updatedCart);
 	};
 
+	const handleRemoveProductFromCart = (productId) => {
+		const updatedCart = cart.filter((product) => productId !== productId);
+		setCart(updatedCart);
+	};
+
 	return (
 		<Container>
 			{cart.map((product) => (
@@ -113,8 +118,9 @@ export default function Store() {
 						product={product}
 						cart={cart}
 						handleAddProductToCart={handleAddProductToCart}
-						handleRemoveProductFromCart={handleRemoveProductFromCart}
+						handleRemoveProductQtyFromCart={handleRemoveProductQtyFromCart}
 						handleQtyChange={handleQtyChange}
+						handleRemoveProductFromCart={handleRemoveProductFromCart}
 					/>
 				))}
 			</Masonry>

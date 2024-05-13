@@ -15,8 +15,9 @@ export default function ProductCard({
 	product,
 	cart,
 	handleAddProductToCart,
-	handleRemoveProductFromCart,
+	handleRemoveProductQtyFromCart,
 	handleQtyChange,
+	handleRemoveProductFromCart,
 }) {
 	const inCart = cart.filter((item) => (item.id === product.id ? item : ''));
 
@@ -68,11 +69,13 @@ export default function ProductCard({
 										alignItems: 'center',
 									}}
 								>
-									<IconButton>
+									<IconButton
+										onClick={() => handleRemoveProductFromCart(product.id)}
+									>
 										<Close />
 									</IconButton>
 									<IconButton
-										onClick={() => handleRemoveProductFromCart(product.id)}
+										onClick={() => handleRemoveProductQtyFromCart(product.id)}
 									>
 										<Remove />
 									</IconButton>
