@@ -3,7 +3,7 @@ import { Box, Button, Container, Paper, Typography } from '@mui/material';
 // @ts-ignore
 import storeProductsImg from '/storeProducts.jpg';
 import { useNavigate } from 'react-router-dom';
-import { blue, green, grey } from '@mui/material/colors';
+import { blue, grey } from '@mui/material/colors';
 
 export default function Home() {
 	const navigate = useNavigate();
