@@ -51,6 +51,7 @@ export default function Cart({
 							handleRemoveProductQtyFromCart={handleRemoveProductQtyFromCart}
 							handleQtyChange={handleQtyChange}
 							handleRemoveProductFromCart={handleRemoveProductFromCart}
+							key={product.id}
 						/>
 					))}
 				</Masonry>
