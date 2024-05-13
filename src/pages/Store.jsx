@@ -72,7 +72,7 @@ export default function Store() {
 	// Updates the qty in the cart when the user types an ammount in the textfield
 	const handleQtyChange = (e, productId) => {
 		// If the quantity is set to 0, remove from the cart
-		if (e.target.value === 0 || e.target.value === '0') {
+		if (e.target.value === 0 || e.target.value < 0) {
 			return handleRemoveProductFromCart(productId);
 		}
 		const productToUpdate = cart.filter((product) => productId === product.id);
@@ -80,7 +80,9 @@ export default function Store() {
 			if (productToUpdate[0].id === productId) {
 				return {
 					...product,
-					qty: e.target.value,
+					qty: !Number.isNaN(Number(e.target.value))
+						? e.target.value
+						: product.qty,
 				};
 			} else {
 				return {
@@ -98,9 +100,6 @@ export default function Store() {
 
 	return (
 		<Container>
-			{cart.map((product) => (
-				<Typography>{product.id + ' = ' + product.qty}</Typography>
-			))}
 			<Masonry
 				spacing={3}
 				columns={{

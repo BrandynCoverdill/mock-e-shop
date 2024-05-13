@@ -85,6 +85,7 @@ export default function ProductCard({
 											flexGrow: '2',
 										}}
 										onChange={(e) => handleQtyChange(e, product.id)}
+										type='number'
 									></TextField>
 									<IconButton
 										onClick={() => handleAddProductToCart(product.id)}
