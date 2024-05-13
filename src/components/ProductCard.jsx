@@ -16,6 +16,7 @@ export default function ProductCard({
 	cart,
 	handleAddProductToCart,
 	handleRemoveProductFromCart,
+	handleQtyChange,
 }) {
 	const inCart = cart.filter((item) => (item.id === product.id ? item : ''));
 
@@ -80,6 +81,7 @@ export default function ProductCard({
 										sx={{
 											flexGrow: '2',
 										}}
+										onChange={(e) => handleQtyChange(e, product.id)}
 									></TextField>
 									<IconButton
 										onClick={() => handleAddProductToCart(product.id)}

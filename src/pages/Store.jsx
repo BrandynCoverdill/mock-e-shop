@@ -69,6 +69,28 @@ export default function Store() {
 		}
 	};
 
+	// Updates the qty in the cart when the user types an ammount in the textfield
+	const handleQtyChange = (e, productId) => {
+		// If the quantity is set to 0, remove from the cart
+		if (e.target.value === 0 || e.target.value === '0') {
+			return handleRemoveProductFromCart(productId);
+		}
+		const productToUpdate = cart.filter((product) => productId === product.id);
+		const updatedCart = cart.map((product) => {
+			if (productToUpdate[0].id === productId) {
+				return {
+					...product,
+					qty: e.target.value,
+				};
+			} else {
+				return {
+					...product,
+				};
+			}
+		});
+		setCart(updatedCart);
+	};
+
 	return (
 		<Container>
 			{cart.map((product) => (
@@ -92,6 +114,7 @@ export default function Store() {
 						cart={cart}
 						handleAddProductToCart={handleAddProductToCart}
 						handleRemoveProductFromCart={handleRemoveProductFromCart}
+						handleQtyChange={handleQtyChange}
 					/>
 				))}
 			</Masonry>
