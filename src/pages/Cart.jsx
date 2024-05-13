@@ -10,7 +10,12 @@ import { Context } from '../App';
 import { useContext } from 'react';
 import ProductCard from '../components/ProductCard';
 
-export default function Cart() {
+export default function Cart(
+	handleAddProductToCart,
+	handleRemoveProductQtyFromCart,
+	handleQtyChange,
+	handleRemoveProductFromCart
+) {
 	const { productsContext, cartContext } = useContext(Context);
 	const [products, setProducts] = productsContext;
 	const [cart, setCart] = cartContext;
