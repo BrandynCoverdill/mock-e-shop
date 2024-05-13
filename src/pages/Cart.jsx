@@ -1,12 +1,4 @@
-import {
-	Box,
-	Card,
-	CardContent,
-	CardMedia,
-	Container,
-	Grid,
-	Typography,
-} from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { Context } from '../App';
 import { useContext } from 'react';
 import ProductCard from '../components/ProductCard';
@@ -45,7 +37,6 @@ export default function Cart({
 					spacing={3}
 					columns={{
 						xs: 1,
-						md: 2,
 					}}
 					sx={{
 						my: 1,

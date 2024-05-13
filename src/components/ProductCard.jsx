@@ -36,6 +36,7 @@ export default function ProductCard({
 					sx={{
 						width: '100%',
 						margin: 'auto',
+						maxHeight: '200px',
 					}}
 					p={1}
 				>
@@ -45,7 +46,7 @@ export default function ProductCard({
 						title={product.title}
 						sx={{
 							objectFit: 'contain',
-							height: '100%',
+							maxHeight: '200px',
 							width: '100%',
 						}}
 					/>
