@@ -74,7 +74,7 @@ export default function Store() {
 	// Updates the qty in the cart when the user types an ammount in the textfield
 	const handleQtyChange = (e, productId) => {
 		// If the quantity is set to 0, remove from the cart
-		if (e.target.value === 0 || e.target.value < 0) {
+		if (e.target.value === 0 || e.target.value < 1) {
 			return handleRemoveProductFromCart(productId);
 		}
 		const productToUpdate = cart.filter((product) => productId === product.id);
