@@ -23,15 +23,9 @@ export default function ProductCard({
 		<Box>
 			<Card
 				sx={{
-					// maxWidth: '400px',
-					// display: 'flex',
 					display: {
 						sm: 'flex',
 					},
-					// maxWidth: {
-					// 	xs: '300px',
-					// 	sm: 'auto',
-					// },
 				}}
 				raised
 			>
