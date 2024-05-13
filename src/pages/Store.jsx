@@ -1,13 +1,15 @@
 import { Card, Container, Typography } from '@mui/material';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import ProductCard from '../components/ProductCard';
 import Masonry from '@mui/lab/Masonry';
 import { Context } from '../App';
 
 export default function Store() {
-	const [products, setProducts] = useState([]);
-	const [cart, setCart] = useContext(Context);
+	const { cartContext, productsContext } = useContext(Context);
+	const [products, setProducts] = productsContext;
+	const [cart, setCart] = cartContext;
 
+	// fetch data
 	useEffect(() => {
 		const fetchData = async () => {
 			const res = await fetch('https://fakestoreapi.com/products', {
@@ -19,7 +21,7 @@ export default function Store() {
 				.then((json) => setProducts(json));
 		};
 		fetchData();
-	}, [cart]);
+	}, []);
 
 	// Adds a product to the cart
 	const handleAddProductToCart = (productId) => {

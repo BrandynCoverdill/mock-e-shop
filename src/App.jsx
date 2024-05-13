@@ -13,6 +13,7 @@ export const Context = createContext();
 
 export default function App() {
 	const [cart, setCart] = useState([]);
+	const [products, setProducts] = useState([]);
 
 	// Create custom theme
 	const theme = createTheme({
@@ -29,7 +30,12 @@ export default function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline>
-				<Context.Provider value={[cart, setCart]}>
+				<Context.Provider
+					value={{
+						cartContext: [cart, setCart],
+						productsContext: [products, setProducts],
+					}}
+				>
 					<Router>
 						<Layout>
 							<Routes>
