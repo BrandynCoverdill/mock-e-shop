@@ -100,7 +100,7 @@ export default function App() {
 	};
 
 	const handleRemoveProductFromCart = (productId) => {
-		const updatedCart = cart.filter((product) => productId !== productId);
+		const updatedCart = cart.filter((product) => productId !== product.id);
 		setCart(updatedCart);
 	};
 
