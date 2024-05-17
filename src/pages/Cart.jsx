@@ -24,6 +24,7 @@ export default function Cart({
 	const productCart = [];
 
 	const taxRate = 0.06;
+	const shippingCost = 12.99;
 
 	products.map((product) =>
 		cart.map((cartProduct) => {
@@ -83,6 +84,9 @@ export default function Cart({
 									.toFixed(2) * taxRate
 							).toFixed(2)}
 						</Typography>
+						<Typography variant='h6' m={1}>
+							Shipping Cost: ${shippingCost}
+						</Typography>
 						<Divider />
 						<Typography variant='h4' m={1}>
 							Total Cost: $
@@ -90,7 +94,8 @@ export default function Cart({
 								+productCart
 									.reduce((acc, cur) => acc + cur.price * cur.qty, 0)
 									.toFixed(2) *
-								(taxRate + 1)
+									(taxRate + 1) +
+								shippingCost
 							).toFixed(2)}
 						</Typography>
 						<Box m={1}>
