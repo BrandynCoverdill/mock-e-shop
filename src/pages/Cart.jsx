@@ -31,9 +31,9 @@ export default function Cart({
 		lastName: '',
 		email: '',
 	});
-	const [firstNameError, setFirstNameError] = useState(false);
-	const [lastNameError, setLastNameError] = useState(false);
-	const [emailError, setEmailError] = useState(false);
+	const [firstNameError, setFirstNameError] = useState(true);
+	const [lastNameError, setLastNameError] = useState(true);
+	const [emailError, setEmailError] = useState(true);
 
 	const productCart = [];
 
@@ -65,6 +65,7 @@ export default function Cart({
 			...customer,
 			firstName: data,
 		});
+		setFirstNameError(data.trim() === '' || data.length === 0);
 	};
 
 	const handleLastNameChange = (e) => {
@@ -73,14 +74,17 @@ export default function Cart({
 			...customer,
 			lastName: data,
 		});
+		setLastNameError(data.trim() === '' || data.length === 0);
 	};
 
 	const handleEmailChange = (e) => {
 		const data = e.target.value;
+		const regex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/;
 		setCustomer({
 			...customer,
 			email: data,
 		});
+		setEmailError(!regex.test(data) || data.length === 0 || data.trim() === '');
 	};
 
 	// TODO: Have a popup saying the order was placed
@@ -170,6 +174,7 @@ export default function Cart({
 				<DialogTitle>*Place Order</DialogTitle>
 				<DialogContent>
 					<TextField
+						autoFocus
 						required
 						name='firstName'
 						id='firstName'
@@ -194,7 +199,6 @@ export default function Cart({
 						helperText={lastNameError ? 'Please enter your last name' : ''}
 					/>
 					<TextField
-						autoFocus
 						required
 						id='email'
 						name='email'
