@@ -99,7 +99,7 @@ export default function Cart({
 							).toFixed(2)}
 						</Typography>
 						<Box m={1}>
-							<Button size='large' variant='contained'>
+							<Button size='large' variant='contained' disableTouchRipple>
 								Continue to Checkout
 							</Button>
 						</Box>
