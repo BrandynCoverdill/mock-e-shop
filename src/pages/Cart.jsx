@@ -89,13 +89,15 @@ export default function Cart({
 		setEmailError(!regex.test(data) || data.length === 0 || data.trim() === '');
 	};
 
-	// BUG: Toast notification is not showing on screen
 	const placeOrder = () => {
 		console.log(customer);
 		toast.success('Order has been placed!', {
 			position: 'bottom-left',
 			autoClose: 5000,
 		});
+		// Remove all items from customer's cart
+		setCart([]);
+		productCart.splice(0, productCart.length);
 		closeFormDialog();
 	};
 
@@ -242,6 +244,7 @@ export default function Cart({
 					</DialogContentText>
 				</DialogContent>
 			</Dialog>
+			<ToastContainer />
 		</Container>
 	);
 }
