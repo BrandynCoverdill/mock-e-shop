@@ -1,11 +1,4 @@
-import {
-	Box,
-	Card,
-	CircularProgress,
-	Container,
-	LinearProgress,
-	Typography,
-} from '@mui/material';
+import { Box, Container, LinearProgress } from '@mui/material';
 import { useEffect, useContext } from 'react';
 import ProductCard from '../components/ProductCard';
 import Masonry from '@mui/lab/Masonry';

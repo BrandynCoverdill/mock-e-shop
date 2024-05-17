@@ -15,6 +15,7 @@ import { Context } from '../App';
 import { useContext, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import { Masonry } from '@mui/lab';
+import { useNavigate } from 'react-router-dom';
 
 export default function Cart({
 	handleAddProductToCart,
@@ -22,6 +23,7 @@ export default function Cart({
 	handleQtyChange,
 	handleRemoveProductFromCart,
 }) {
+	const navigate = useNavigate();
 	const { productsContext, cartContext } = useContext(Context);
 	const [products, setProducts] = productsContext;
 	const [cart, setCart] = cartContext;
@@ -164,7 +166,18 @@ export default function Cart({
 							</Button>
 						</Box>
 					</Box>
-				) : null}
+				) : (
+					<Box>
+						<Typography>No things to checkout yet..</Typography>
+						<Button
+							variant='contained'
+							disableTouchRipple
+							onClick={() => navigate('/store')}
+						>
+							View Products
+						</Button>
+					</Box>
+				)}
 			</Box>
 			<Dialog
 				open={formDialog}
