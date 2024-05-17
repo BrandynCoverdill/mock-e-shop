@@ -1,13 +1,18 @@
 import {
 	Box,
 	Button,
-	Card,
 	Container,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogContentText,
+	DialogTitle,
 	Divider,
+	TextField,
 	Typography,
 } from '@mui/material';
 import { Context } from '../App';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import { Masonry } from '@mui/lab';
 
@@ -20,6 +25,15 @@ export default function Cart({
 	const { productsContext, cartContext } = useContext(Context);
 	const [products, setProducts] = productsContext;
 	const [cart, setCart] = cartContext;
+	const [formDialog, setFormDialog] = useState(false);
+	const [customer, setCustomer] = useState({
+		firstName: '',
+		lastName: '',
+		email: '',
+	});
+	const [firstNameError, setFirstNameError] = useState(false);
+	const [lastNameError, setLastNameError] = useState(false);
+	const [emailError, setEmailError] = useState(false);
 
 	const productCart = [];
 
@@ -36,6 +50,43 @@ export default function Cart({
 			}
 		})
 	);
+
+	const openFormDialog = () => {
+		setFormDialog(true);
+	};
+
+	const closeFormDialog = () => {
+		setFormDialog(false);
+	};
+
+	const handleFirstNameChange = (e) => {
+		const data = e.target.value;
+		setCustomer({
+			...customer,
+			firstName: data,
+		});
+	};
+
+	const handleLastNameChange = (e) => {
+		const data = e.target.value;
+		setCustomer({
+			...customer,
+			lastName: data,
+		});
+	};
+
+	const handleEmailChange = (e) => {
+		const data = e.target.value;
+		setCustomer({
+			...customer,
+			email: data,
+		});
+	};
+
+	// TODO: Have a popup saying the order was placed
+	const placeOrder = () => {
+		console.log(customer);
+	};
 
 	return (
 		<Container>
@@ -99,13 +150,84 @@ export default function Cart({
 							).toFixed(2)}
 						</Typography>
 						<Box m={1}>
-							<Button size='large' variant='contained' disableTouchRipple>
+							<Button
+								size='large'
+								variant='contained'
+								disableTouchRipple
+								onClick={() => openFormDialog()}
+							>
 								Continue to Checkout
 							</Button>
 						</Box>
 					</Box>
 				) : null}
 			</Box>
+			<Dialog
+				open={formDialog}
+				onClose={() => closeFormDialog()}
+				onSubmit={() => console.log('Order Placed!')}
+			>
+				<DialogTitle>*Place Order</DialogTitle>
+				<DialogContent>
+					<TextField
+						required
+						name='firstName'
+						id='firstName'
+						label='First Name'
+						type='text'
+						margin='dense'
+						fullWidth
+						onChange={(e) => handleFirstNameChange(e)}
+						error={firstNameError}
+						helperText={firstNameError ? 'Please enter your first name' : ''}
+					/>
+					<TextField
+						required
+						name='lastName'
+						id='lastName'
+						label='Last Name'
+						type='text'
+						margin='dense'
+						fullWidth
+						onChange={(e) => handleLastNameChange(e)}
+						error={lastNameError}
+						helperText={lastNameError ? 'Please enter your last name' : ''}
+					/>
+					<TextField
+						autoFocus
+						required
+						id='email'
+						name='email'
+						label='Email Address'
+						type='email'
+						margin='dense'
+						fullWidth
+						onChange={(e) => handleEmailChange(e)}
+						error={emailError}
+						helperText={emailError ? 'Please enter a valid email address' : ''}
+					/>
+					<DialogActions>
+						<Button
+							variant='contained'
+							disableTouchRipple
+							onClick={() => closeFormDialog()}
+						>
+							Cancel
+						</Button>
+						<Button
+							variant='contained'
+							disableTouchRipple
+							type='submit'
+							onClick={() => placeOrder()}
+						>
+							Place Order
+						</Button>
+					</DialogActions>
+					<DialogContentText>
+						*This form does not do anything with the data you provide.
+					</DialogContentText>
+				</DialogContent>
+			</Dialog>
 		</Container>
 	);
 }
