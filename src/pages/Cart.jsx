@@ -15,7 +15,8 @@ import { Context } from '../App';
 import { useContext, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import { Masonry } from '@mui/lab';
-import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Cart({
 	handleAddProductToCart,
@@ -23,7 +24,6 @@ export default function Cart({
 	handleQtyChange,
 	handleRemoveProductFromCart,
 }) {
-	const navigate = useNavigate();
 	const { productsContext, cartContext } = useContext(Context);
 	const [products, setProducts] = productsContext;
 	const [cart, setCart] = cartContext;
@@ -89,9 +89,14 @@ export default function Cart({
 		setEmailError(!regex.test(data) || data.length === 0 || data.trim() === '');
 	};
 
-	// TODO: Have a popup saying the order was placed
+	// BUG: Toast notification is not showing on screen
 	const placeOrder = () => {
 		console.log(customer);
+		toast.success('Order has been placed!', {
+			position: 'bottom-left',
+			autoClose: 5000,
+		});
+		closeFormDialog();
 	};
 
 	return (
