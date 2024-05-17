@@ -166,18 +166,7 @@ export default function Cart({
 							</Button>
 						</Box>
 					</Box>
-				) : (
-					<Box>
-						<Typography>No things to checkout yet..</Typography>
-						<Button
-							variant='contained'
-							disableTouchRipple
-							onClick={() => navigate('/store')}
-						>
-							View Products
-						</Button>
-					</Box>
-				)}
+				) : null}
 			</Box>
 			<Dialog
 				open={formDialog}
@@ -198,6 +187,7 @@ export default function Cart({
 						onChange={(e) => handleFirstNameChange(e)}
 						error={firstNameError}
 						helperText={firstNameError ? 'Please enter your first name' : ''}
+						value={customer.firstName}
 					/>
 					<TextField
 						required
@@ -210,6 +200,7 @@ export default function Cart({
 						onChange={(e) => handleLastNameChange(e)}
 						error={lastNameError}
 						helperText={lastNameError ? 'Please enter your last name' : ''}
+						value={customer.lastName}
 					/>
 					<TextField
 						required
@@ -222,6 +213,7 @@ export default function Cart({
 						onChange={(e) => handleEmailChange(e)}
 						error={emailError}
 						helperText={emailError ? 'Please enter a valid email address' : ''}
+						value={customer.email}
 					/>
 					<DialogActions>
 						<Button
