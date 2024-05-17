@@ -1,4 +1,11 @@
-import { Card, Container, Typography } from '@mui/material';
+import {
+	Box,
+	Card,
+	CircularProgress,
+	Container,
+	LinearProgress,
+	Typography,
+} from '@mui/material';
 import { useEffect, useContext } from 'react';
 import ProductCard from '../components/ProductCard';
 import Masonry from '@mui/lab/Masonry';
@@ -30,31 +37,42 @@ export default function Store({
 
 	return (
 		<Container>
-			<Masonry
-				spacing={3}
-				columns={{
-					xs: 1,
-					md: 2,
-				}}
-				sx={{
-					my: 1,
-					margin: 'auto',
-				}}
-			>
-				{products.map((product) => (
-					// @ts-ignore
-					<ProductCard
-						product={product}
-						cart={cart}
-						handleAddProductToCart={handleAddProductToCart}
-						handleRemoveProductQtyFromCart={handleRemoveProductQtyFromCart}
-						handleQtyChange={handleQtyChange}
-						handleRemoveProductFromCart={handleRemoveProductFromCart}
-						key={product.id}
-						showDescription={true}
-					/>
-				))}
-			</Masonry>
+			{products.length === 0 ? (
+				<Box
+					sx={{
+						width: '100%',
+						marginTop: 3,
+					}}
+				>
+					<LinearProgress />
+				</Box>
+			) : (
+				<Masonry
+					spacing={3}
+					columns={{
+						xs: 1,
+						md: 2,
+					}}
+					sx={{
+						my: 1,
+						margin: 'auto',
+					}}
+				>
+					{products.map((product) => (
+						// @ts-ignore
+						<ProductCard
+							product={product}
+							cart={cart}
+							handleAddProductToCart={handleAddProductToCart}
+							handleRemoveProductQtyFromCart={handleRemoveProductQtyFromCart}
+							handleQtyChange={handleQtyChange}
+							handleRemoveProductFromCart={handleRemoveProductFromCart}
+							key={product.id}
+							showDescription={true}
+						/>
+					))}
+				</Masonry>
+			)}
 		</Container>
 	);
 }
