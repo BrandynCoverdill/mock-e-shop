@@ -1,4 +1,4 @@
-# Mock eShop
+# [Mock eShop](https://mockeshop.netlify.app)
 
 A mock e-shop project that allows users to view products, add to their cart, view their cart, and proceed to buy those products.
 
