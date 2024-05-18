@@ -14,6 +14,7 @@ This app has the following packages installed:
 - @mui/lab
 - @mui/material
 - react-router-dom
+- react-toastify
 
 ## Use / Run application
 
